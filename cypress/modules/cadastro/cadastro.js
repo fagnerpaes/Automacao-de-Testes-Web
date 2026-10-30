@@ -86,6 +86,8 @@ function validarContaExcluida() {
       .and('contain.text', 'Account Deleted!');
 }
 
+ //Padrão Workflow/Facade: agrupa o fluxo completo de cadastro.
+ // Usado como preparação (arrange) nos cenários TC2, TC4, TC5, TC15 e TC16.
 function cadastrarUsuario(usuario, email) {
     acessarPaginaDeCadastro();
     iniciarCadastro(usuario.nome, email);

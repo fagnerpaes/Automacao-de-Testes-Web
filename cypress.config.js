@@ -8,6 +8,10 @@ module.exports = defineConfig({
     defaultCommandTimeout: 10000,
     video: false,
     screenshotOnRunFailure: true,
+    retries: {
+      runMode: 2,
+      openMode: 0,
+    },
     blockHosts: [
       "*googlesyndication.com",
       "*doubleclick.net",

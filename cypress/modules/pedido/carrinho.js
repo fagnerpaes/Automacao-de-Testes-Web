@@ -8,11 +8,30 @@ const seletores = {
     botaoCheckout: '.check_out',
 };
 
+/* falha intermitente (flaky)
 function adicionarProdutoAoCarrinho(idProduto) {
     cy.get(seletores.botaoAdicionar(idProduto)).click();
     cy.get(seletores.modalCarrinho).should('be.visible');
     cy.get(seletores.botaoContinuarComprando).click();
 }
+*/
+
+//esperar a requisição do site
+function adicionarProdutoAoCarrinho(idProduto) {
+    cy.intercept('GET', `/add_to_cart/${idProduto}`).as('adicionarAoCarrinho');
+
+    cy.get(seletores.botaoAdicionar(idProduto)).click();
+
+    cy.wait('@adicionarAoCarrinho')
+      .its('response.statusCode')
+      .should('eq', 200);
+    cy.get(seletores.modalCarrinho)
+      .should('be.visible')
+      .and('contain.text', 'Your product has been added to cart.');
+    cy.get(seletores.botaoContinuarComprando).click();
+    cy.get(seletores.modalCarrinho).should('not.be.visible');
+}
+
 
 function acessarCarrinho() {
     cy.get(seletores.menuCarrinho).click();
