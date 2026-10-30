@@ -8,14 +8,16 @@ describe('Login de usuário', () => {
         const usuario = usuarios.usuarioCadastro;
         const email = `pgats+${Date.now()}@teste.com`;
 
-        // Preparação: cria um usuário e sai da conta
+        //arrange: ter uma conta e estar deslogado
         cadastro.cadastrarUsuario(usuario, email);
         logout.efetuarLogout();
 
-        // Cenário do TC2
+         //act: fazer o login
         login.acessarLogin();
         login.efetuarLogin(email, usuario.senha);
         login.validarUsuarioLogado(usuario.nome);
+
+        // Limpeza: o TC2 pede para excluir a conta
         cadastro.excluirConta();
         cadastro.validarContaExcluida();
     });
