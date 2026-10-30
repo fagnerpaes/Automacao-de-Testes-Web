@@ -22,6 +22,9 @@ const seletores = {
     celular: '[data-qa="mobile_number"]',
     botaoCriarConta: '[data-qa="create-account"]',
     mensagemContaCriada: '[data-qa="account-created"]',
+    botaoContinuar: '[data-qa="continue-button"]',
+    linkExcluirConta: 'a[href="/delete_account"]',
+    mensagemContaExcluida: '[data-qa="account-deleted"]',
 };
 
 function acessarPaginaDeCadastro() {
@@ -68,6 +71,21 @@ function validarContaCriada() {
       .and('contain.text', 'Account Created!');
 }
 
+function continuar() {
+    cy.get(seletores.botaoContinuar).click();
+}
+
+function excluirConta() {
+    cy.get(seletores.linkExcluirConta).click();
+}
+
+function validarContaExcluida() {
+    cy.get(seletores.mensagemContaExcluida)
+      .should('be.visible')
+      .and('contain.text', 'Account Deleted!');
+}
+
+
 module.exports = {
     acessarPaginaDeCadastro,
     iniciarCadastro,
@@ -75,4 +93,7 @@ module.exports = {
     preencherEndereco,
     criarConta,
     validarContaCriada,
+    continuar,
+    excluirConta,
+    validarContaExcluida
 };

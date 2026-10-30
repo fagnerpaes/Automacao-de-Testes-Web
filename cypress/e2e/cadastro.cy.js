@@ -1,4 +1,5 @@
 const cadastro = require('../modules/cadastro/cadastro');
+const login = require('../modules/login/login');          // ← adicione esta linha
 const usuarios = require('../fixtures/usuarios.json');
 
 describe('Cadastro de usuário', () => {
@@ -11,6 +12,11 @@ describe('Cadastro de usuário', () => {
         cadastro.preencherDadosDaConta(usuario);
         cadastro.preencherEndereco(usuario);
         cadastro.criarConta();
-        cadastro.validarContaCriada();
+        cadastro.validarContaCriada();     
+        cadastro.continuar();
+        login.validarUsuarioLogado(usuario.nome);
+        cadastro.excluirConta();
+        cadastro.validarContaExcluida();
+        cadastro.continuar();   
     });
 });
