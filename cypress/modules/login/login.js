@@ -25,7 +25,7 @@ function validarUsuarioLogado(nome) {
 function validarMensagemDeErroLogin() {
     cy.get(seletores.mensagemErro)
       .should('be.visible')
-      .and('contain.text', 'Your email or password is correct!');
+      .and('contain.text', 'Your email or password is incorrect!');
 }
 
 module.exports = {
