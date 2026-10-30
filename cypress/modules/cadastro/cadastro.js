@@ -25,6 +25,7 @@ const seletores = {
     botaoContinuar: '[data-qa="continue-button"]',
     linkExcluirConta: 'a[href="/delete_account"]',
     mensagemContaExcluida: '[data-qa="account-deleted"]',
+    mensagemEmailExistente: 'form[action*="signup"] p',
 };
 
 function acessarPaginaDeCadastro() {
@@ -95,6 +96,12 @@ function cadastrarUsuario(usuario, email) {
     continuar();
 }
 
+function validarMensagemEmailExistente() {
+    cy.get(seletores.mensagemEmailExistente)
+      .should('be.visible')
+      .and('contain.text', 'Email Address already exist!');
+}
+
 
 module.exports = {
     acessarPaginaDeCadastro,
@@ -106,5 +113,6 @@ module.exports = {
     continuar,
     excluirConta,
     validarContaExcluida,
-    cadastrarUsuario
+    cadastrarUsuario,
+    validarMensagemEmailExistente
 };

@@ -1,5 +1,6 @@
 const cadastro = require('../modules/cadastro/cadastro');
-const login = require('../modules/login/login');          // ← adicione esta linha
+const login = require('../modules/login/login');
+const logout = require('../modules/logout/logout');
 const usuarios = require('../fixtures/usuarios.json');
 
 describe('Cadastro de usuário', () => {
@@ -19,4 +20,22 @@ describe('Cadastro de usuário', () => {
         cadastro.validarContaExcluida();
         cadastro.continuar();   
     });
+
+    it('TC5 - não deve cadastrar usuário com e-mail já existente', () => {
+        const usuario = usuarios.usuarioCadastro;
+        const email = `pgats+${Date.now()}@teste.com`;
+
+        // arrange: criar um usuário e sair
+        cadastro.cadastrarUsuario(usuario, email);
+        logout.efetuarLogout();
+
+        // act: tentar cadastrar de novo com o mesmo e-mail
+        cadastro.acessarPaginaDeCadastro();
+        cadastro.iniciarCadastro(usuario.nome, email);
+
+        // assert
+        cadastro.validarMensagemEmailExistente();
+    });
+
+
 });
