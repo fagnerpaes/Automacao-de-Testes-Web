@@ -85,6 +85,16 @@ function validarContaExcluida() {
       .and('contain.text', 'Account Deleted!');
 }
 
+function cadastrarUsuario(usuario, email) {
+    acessarPaginaDeCadastro();
+    iniciarCadastro(usuario.nome, email);
+    preencherDadosDaConta(usuario);
+    preencherEndereco(usuario);
+    criarConta();
+    validarContaCriada();
+    continuar();
+}
+
 
 module.exports = {
     acessarPaginaDeCadastro,
@@ -95,5 +105,6 @@ module.exports = {
     validarContaCriada,
     continuar,
     excluirConta,
-    validarContaExcluida
+    validarContaExcluida,
+    cadastrarUsuario
 };
