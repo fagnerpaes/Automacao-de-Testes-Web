@@ -1,0 +1,19 @@
+{
+  "usuarioCadastro": {
+    "nome": "PGATS Fagner",
+    "senha": "Teste@123",
+    "dia": "10",
+    "mes": "May",
+    "ano": "1990",
+    "primeiroNome": "Fagner",
+    "ultimoNome": "Paes",
+    "empresa": "Best Code",
+    "endereco": "Rua dos Testes, 100",
+    "endereco2": "Sala 1",
+    "pais": "Canada",
+    "estado": "Ontario",
+    "cidade": "Toronto",
+    "cep": "12345",
+    "celular": "11999999999"
+  }
+}
