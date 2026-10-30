@@ -1,6 +1,13 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  reporter: "cypress-mochawesome-reporter",
+  reporterOptions: {
+    reportPageTitle: "Automation Exercise - Testes E2E",
+    charts: true,
+    embeddedScreenshots: true,
+    inlineAssets: true,
+  },
   e2e: {
     baseUrl: "https://automationexercise.com",
     viewportWidth: 1366,
@@ -22,7 +29,7 @@ module.exports = defineConfig({
       "*fundingchoicesmessages.google.com",
     ],
     setupNodeEvents(on, config) {
-      // o reporter entra aqui na Etapa 6
+      require("cypress-mochawesome-reporter/plugin")(on);
     },
   },
 });
